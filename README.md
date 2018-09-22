@@ -211,6 +211,7 @@ Any function or class should implement the behavior that another programmer coul
 ``` Day day = DayDate.StringToDay(String dayName); ```
 
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
+
 3.	Incorrect Behavior at the Boundaries
 Don’t rely on your intuition. Look for every boundary condition and write a test for it.
 4.	Overridden Safeties
