@@ -4,9 +4,9 @@ Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 
 Three important design principles are referenced in this book frequently. They are,
 
-OCP - Open-Closed Principle - Classes should be open for extension but closed for modification.
-SRP - Single Responsibility Principle - A class should have one, and only one, reason to change.
-DIP - Dependency Inversion Principle - Classes should depend upon abstractions, not on concrete details.
+- OCP - Open-Closed Principle - Classes should be open for extension but closed for modification.
+- SRP - Single Responsibility Principle - A class should have one, and only one, reason to change.
+- DIP - Dependency Inversion Principle - Classes should depend upon abstractions, not on concrete details.
 
 ### Chapter:1 Clean Code
 1.	Writing clean code requires discipline. We need to work hard to get “code-sense”.
@@ -77,16 +77,16 @@ DIP - Dependency Inversion Principle - Classes should depend upon abstractions, 
 ### Chapter:6 Objects and Data structures
 1.	We keep our variables private Nobody depends on them. Freedom to change their type or implementation. If you don't need them don't expose the with public getter/setter
 2.	Try to not violate the Law of Demeter rule. It states that “talk to friends, not to strangers”. A method “F” of a Class “C” class should call only methods of these.
-1.	Class C methods
-2.	An object created by function “F”.
-3.	An object passed to function “F”
-4.	An object held in an instance variable of class “C”
+   - 	Class C methods
+   -  An object created by function “F”.
+   -  An object passed to function “F”
+   -  An object held in an instance variable of class “C”
 3.	Avoid the code like below. Its called “Train Wreck”
 
 ```
 final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
 ````
-You tell an object to do something you should not be asking it about its internals. In this example, the outputDir is being used for creating the scratch file. So instead of doing all this, we can let Context object to create the Scratch file.
+You tell an object to do something and you should not be asking it about its internals. In this example, the outputDir is being used for creating the scratch file. So instead of doing all this, we can let Context object to create the Scratch file.
 ```
 BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);
  
@@ -94,7 +94,7 @@ BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);
 ### Chapter:7 Exception Handling
 1.	Use exception rather than return codes
 2.	Use unchecked exception where ever possible. Because adding checked exception to an existing method will trigger lot of change if that method is used in many places.
-3.	Provide context with exceptions
+3.	Provide context such as error and its reason along with exception.
 4.	Define Exception Classes in Terms of a Caller’s Needs. If you happen to use third party library and you want to handle error scenario, then its better to create a wrapper class and handle the error in it. 
 5.	Define the Normal flow. To handle the special scenario, we can follow SPECIAL CASE PATTERN. You create a class or configure an object to handles a special case for you. When you do the client does not have to deal with exceptional behavior.
 6.	Don’t pass NULL and return NULL
@@ -147,19 +147,20 @@ According to Kent, a design is “simple” if it follows these rules.
 4.	Minimizes the number of classes and methods
  	
 #### Rule 1: Runs all the tests
-Writing tests leads to better designs.
+Writing tests leads to better designs. 
 Tight coupling makes it difficult to write tests. When you write more tests then we use principles like DIP and tools like Dependency Injection, Interfaces and abstraction to minimize coupling
 
 #### Rule 2: Refactoring
-       Once we have tests, then we are empowered to keep our code clean. We will do this by incrementally refactoring the code. 
+Once we have tests, then we are empowered to keep our code clean. We will do this by incrementally refactoring the code. 
 During this refactoring step, we can increase cohesion, decrease coupling, separate concerns, modularize system concerns, shrink our function and classes, choose better names and so on.
+
 This is where we also apply the final three rules of simple design. They are Eliminate Duplication, Ensure Expressiveness and minimize the number of classes and methods
-1.	Creating a clean system requires the will to eliminate duplication
-2.	Understanding how to achieve reuse in the small is essential
+- Creating a clean system requires the will to eliminate duplication
+- Understanding how to achieve reuse in the small is essential
 to achieving reuse in the large.
-3.	The TEMPLATE METHOD pattern is useful for removing higher level duplication
-4.	The code should be expressive. You can express yourself by choosing good names. You can express yourself by keeping your functions and classes small. Small classes and functions are usually easy to name, easy to write and easy to understand.
-5.	By using standard pattern names such as COMMAND or VISITOR in the names of the classes that implements those patterns, you can easily describe your design to other developers
+- The TEMPLATE METHOD pattern is useful for removing higher level duplication.
+- The code should be expressive. You can express yourself by choosing good names. You can express yourself by keeping your functions and classes small. Small classes and functions are usually easy to name, easy to write and easy to understand.
+- By using standard pattern names such as COMMAND or VISITOR in the names of the classes that implements those patterns, you can easily describe your design to other developers
 
 ### Chapter: 13 Concurrency
 1.	Keep your concurrency-related code separate from other code.
@@ -206,7 +207,9 @@ to achieving reuse in the large.
 1.	The source file should contain only one language
 2.	Obvious Behavior Is Unimplemented
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
+
 ``` Day day = DayDate.StringToDay(String dayName); ```
+
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
 3.	Incorrect Behavior at the Boundaries
 Don’t rely on your intuition. Look for every boundary condition and write a test for it.
@@ -224,7 +227,8 @@ Don’t create classes with lots of methods or lots of instance variables. Don�
 protected variables and functions for your subclasses. Concentrate on keeping interfaces
 very tight and very small. Help keep coupling low by limiting information.
 9.	Dead code
-10. Vertical Separation – Variable and function should be defined close to where they are used.
+10. Vertical Separation
+Variable and function should be defined close to where they are used.
 11. Inconsistency
  If you do something a certain way, do all similar things in the same way. This goes back
 to the principle of least surprise. Be careful with the conventions you choose, and once chosen, be careful to continue to follow them.
