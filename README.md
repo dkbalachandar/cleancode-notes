@@ -1,32 +1,44 @@
+
 # cleancode-notes
 Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin  - Notes
 
-Chapter:1 Clean Code
+### Chapter:1 Clean Code
 
-1.	Writing clean code requires discipline. We need to work hard to get “code-sense”
-2.	Code without test is not clean	
+1.	Writing clean code requires discipline. We need to work hard to get “code-sense”.
+2.	Code without test is not clean.	
 4.	Boy Scout Rule tells us we should leave it cleaner than we found it. The clean up does not have to be something big.
-5.	To write a new code, we need to read the old one, the ratio of time spent reading vs writing is 10:1 
+5.	To write a new code, we need to read the old one, the ratio of time spent reading vs writing is 10:1.
 
-Chapter: 2 Names
+### Chapter:2 Names
 
 1.	Use intention revealing names. We can improve the code with revealing naming.
-2.	Do not use number series naming
-3.	Use Pronounceable names
-4.	Use Searchable names
+2.	Do not use number series naming.
+3.	Use Pronounceable names.
+4.	Use Searchable names.
 5.	Leave interfaces unadorned. ShapeFactory and ShapeFactoryImp are better than IShapeFactory and ShapeFactory
 6.	Avoid mental mapping.  Be clear in naming things. One difference between a smart programmer and a professional programmer is that the professional understands clarity is king. Professionals use their powers for good and write code that others can understand.
-7.	When constructors are overloaded use static factory methods with names that describe the arguments Ex. Complex fulcrumPoint = Complex.FromRealNumber(23.0);
-8.	Avoid using same word for two purposes.
-9.	Use problem domain names
+7.	When constructors are overloaded use static factory methods with names that describe the arguments.
+ 
+   '''
+   Complex fulcrumPoint = Complex.FromRealNumber(23.0);
+   '''
+   is better than the below code
+   
+    '''
+      Complex fulcrumPoint = new Complex(23.0); 
+      
+    '''
 
-Chapter:3 Functions
+8.	Avoid using same word for two purposes.
+9.	Use problem domain names.
+
+### Chapter:3 Functions
 1.	Function should be small and 20 lines length
 2.	Function should do one thing, they should do it well and they should do it only.
 3.	Reading code from top to bottom
 4.	Be consistent in the function names.
 
-Chapter:4 Comments
+### Chapter:4 Comments
 1.	Always try to explain yourself in code.
 2.	Clear and expressive code with fewer comments is far superior to cluttered and complex code with lots of comments.
 3.	Create a function that says the same thing as the comment you want to write.
@@ -54,7 +66,7 @@ Chapter: 5 Formatting
 7.	Keep lines short and the maximum allowable limit is 120
 8.	Don’t break indentation
 
-Chapter:6 Objects and Data structures
+### Chapter:6 Objects and Data structures
 
 1.	We keep our variables private Nobody depends on them. Freedom to change their type or implementation. If you don't need them don't expose the with public getter/setter
 2.	Try to not violate the Law of Demeter rule. It states that “talk to friends, not to strangers”. A method “F” of a Class “C” class should call only methods of these.
@@ -67,7 +79,7 @@ Chapter:6 Objects and Data structures
 You tell an object to do something you should not be asking it about its internals. In this example, the outputDir is being used for creating the scratch file. So instead of doing all this, we can let Context object to create the Scratch file. 
  “BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);”
 
-Chapter:7 Exception Handling
+### Chapter:7 Exception Handling
 1.	Use exception rather than return codes
 2.	Use unchecked exception where ever possible. Because adding checked exception to an existing method will trigger lot of change if that method is used in many places.
 3.	Provide context with exceptions
@@ -75,16 +87,17 @@ Chapter:7 Exception Handling
 5.	Define the Normal flow. To handle the special scenario, we can follow SPECIAL CASE PATTERN. You create a class or configure an object to handles a special case for you. When you do the client does not have to deal with exceptional behavior.
 6.	Don’t pass NULL and return NULL
 
-Chapter: 8  Boundaries
+### Chapter: 8  Boundaries
 1.	Try to encapsulate any boundary interface like Map inside a class. Avoid returning /accepting it an argument to Public API’s. If the Map interface changes, then we have to change multiple places. To avoid this, its better to wrap it like below.
+'''
    public class Sensor {
   private Map sensors = new HashMap();
 
   public Sensor getById(String id) {
     return (Sensor) sensor.get(id);
   }
-
 }
+'''
 
 2.	Learning Test instead of experimenting and trying out the new stuff in our production code.  We could write few tests to explore our understanding of third-party API. So that for each third-party release, we can run through our test cases and understand that what has changes recently
 
@@ -92,7 +105,7 @@ Chapter: 8  Boundaries
 
 4.	When we use Code that is out of our control, special care must be taken to protect our investment and make sure future changes is not too costly. Wrap them or use an Adapter to convert from our perfect interface to the provided interface.
 
-Chapter: 10 Unit Tests
+### Chapter: 10 Unit Tests
 1.	One assert per test
 2.	Single concept per test
 3.	Follow Build-Operate-Check pattern while writing the test. Each of the test is clearly split into three parts.  The first part builds up the test data, The second part operates on that test data, and the third part checks the operation yielded the expected results.
@@ -104,26 +117,27 @@ F.I.R.S.T
 S – The should have a Boolean output. 	Either they pass or fail. It should be self validating. You should not have to manually compare outputs or check log file to see whether the test pass  
  T – Timely. The test should be written in a timely fashion. It should be written before the production code that makes them pass. 
 
-Chapter: 10 Classes
+### Chapter: 10 Classes
 1.	Classes should be small
 2.	The name of the class should describe what responsibility it fulfills.
 3.	Classes should not too many responsibilities
 4.	The “Single Responsibility Principle” stats that the class should have only one reason to change. They may collaborate with a few other classes to achieve the expected system behavior.
 5.	In general, the more variables a method manipulates the more cohesive that method is to its class. A class in which each variable used by each method is maximally cohesive.
 
-Chapter: 11 Systems
+### Chapter: 11 Systems
 
-Chapter: 12: Emergence
+### Chapter: 12: Emergence
 According to Kent, a design is “simple” if it follows these rules.
 1.	Runs all the test
 2.	Contains no duplication
 3.	Expresses the intent of the programmer
 4.	Minimizes the number of classes and methods
  	
-Rule 1: Runs all the tests
+#### Rule 1: Runs all the tests
 Writing tests leads to better designs.
 Tight coupling makes it difficult to write tests. When you write more tests then we use principles like DIP and tools like Dependency Injection, Interfaces and abstraction to minimize coupling
-Rule 2: Refactoring
+
+#### Rule 2: Refactoring
        Once we have tests, then we are empowered to keep our code clean. We will do this by incrementally refactoring the code. 
 During this refactoring step, we can increase cohesion, decrease coupling, separate concerns, modularize system concerns, shrink our function and classes, choose better names and so on.
 This is where we also apply the final three rules of simple design. They are Eliminate Duplication, Ensure Expressiveness and minimize the number of classes and methods
@@ -134,7 +148,7 @@ to achieving reuse in the large.
 4.	The code should be expressive. You can express yourself by choosing good names. You can express yourself by keeping your functions and classes small. Small classes and functions are usually easy to name, easy to write and easy to understand.
 5.	By using standard pattern names such as COMMAND or VISITOR in the names of the classes that implements those patterns, you can easily describe your design to other developers
 
-Chapter: 13 Concurrency
+### Chapter: 13 Concurrency
 1.	Keep your concurrency-related code separate from other code.
 2.	Take data encapsulation to heart; severely limit the access of any
 data that may be shared
@@ -147,13 +161,13 @@ Chapter:14 Successive refinement
 3.	Separate exception/error logic from the main class if they get too big
 4.	Bad code is very expensive so always clean as soon as possible
 
-NEED TO REVISIT
-Chapter: 15 Junit Internal
+### Chapter: 15 Junit Internal
 
-Chapter:16 Refactoring SerialDate
+### Chapter:16 Refactoring SerialDate
                 
-Chapter: 17 Smells
- Comments:
+### Chapter: 17 Smells
+
+#### Comments
 1.	Inappropriate Information
 -	Its inappropriate for a comment to hold the information better held in a different kind of system such as Git. Comments should be reserved for technical notes and design.
 2.	Obsolete Comment
@@ -163,7 +177,7 @@ Chapter: 17 Smells
 4.	Poorly written comment
 5.	Commented out code
 
-Environment
+#### Environment
 1.	Build Requires More Than One Step: 
 Building a project should be a trivial operation. You should be able to check out the system/project with one simple command and then issue other simple command to build it.
 2.	Tests Require More Than One Step: 
@@ -177,7 +191,7 @@ You should be able to run all the unit tests with just one command
 1.	The source file should contain only one language
 2.	Obvious Behavior Is Unimplemented
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
-Day day = DayDate.StringToDay(String dayName);
+''' Day day = DayDate.StringToDay(String dayName); '''
 
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
 
@@ -235,9 +249,7 @@ solution is correct.
 The dependent module should not make assumptions (in other words, logical dependencies)
 about the module it depends upon. Rather it should explicitly ask that module for all
 the information it depends upon
-
 23.	Prefer Polymorphism to If/Else or Switch/Case
-
 24.	Follow standard conventions
 25.	Replace magic number with Named constants
 26.	Be precise
@@ -269,7 +281,7 @@ In general we don’t want a single module to know much about its collaborators.
 if A collaborates with B, and B collaborates with C, we don’t want modules that use
 A to know about C. (For example, we don’t want a.getB().getC().doSomething();.)
 
-Java:
+#### Java
 1.	Avoid long import Lists by using wildcards
 2.	Don’t inherit constants. Avoid adding constants in an interface and implements it in a class for using constants. Use a static import instead.
 3.	Use Enums over constants
@@ -280,13 +292,15 @@ Names:
 4.	Use long names for long scopes
 5.	Avoid encodings
 6.	Name should describe side-effects. Function name should describe everything that a function does. Don’t hide the side effects with a name. Refer the below example. The better name would be “createOrReturnOos”.
+'''
 public ObjectOutputStream getOos() throws IOException {
 if (m_oos == null) {
 m_oos = new ObjectOutputStream(m_socket.getOutputStream());
 }
 return m_oos;
 }
-Tests:
+''' 
+#### Tests
 1.	Insufficient tests
 2.	Use a coverage tool
 3.	Don’t skip Trivial Tests
@@ -294,7 +308,8 @@ Tests:
 5.	Test Boundary conditions
 6.	Exhaustively Test Near Bugs
 7.	Patterns of Failure Are Revealing
-8.	Test Coverage Patterns Can Be Revealing
+8.	T
+est Coverage Patterns Can Be Revealing
 9.	Tests Should Be Fast
 
 
