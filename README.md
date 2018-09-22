@@ -205,7 +205,7 @@ to achieving reuse in the large.
 
 #### General
 1.	The source file should contain only one language
-2.	Obvious Behavior Is Unimplemented
+2.	Obvious Behavior is unimplemented
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
 
 ``` Day day = DayDate.StringToDay(String dayName); ```
