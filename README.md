@@ -163,7 +163,8 @@ data that may be shared
 3.	Look for the possibility of using the copy of data and not sharing the data
 4.	Become familiar with Java concurrent packages
 5.	Keep your synchronized sections as small as possible
-Chapter:14 Successive refinement
+
+### Chapter:14 Successive refinement
 1.	Author did not simply write the program from the beginning to the end in its final form
 2.	You can’t write clean code in your first attempt itself. Write the workable code, then don’t move on to the next tasks, instead start cleaning
 3.	Separate exception/error logic from the main class if they get too big
@@ -177,19 +178,19 @@ Chapter:14 Successive refinement
 
 #### Comments
 1.	Inappropriate Information
-Its inappropriate for a comment to hold the information better held in a different kind of system such as Git. Comments should be reserved for technical notes and design.
+  Its inappropriate for a comment to hold the information better held in a different kind of system such as Git. Comments should be reserved for technical notes and design.
 2.	Obsolete Comment
- If you find an obsolete comment, it is best to update it or get rid of it as quickly as possible.
+  If you find an obsolete comment, it is best to update it or get rid of it as quickly as possible.
 3.	Redundant Comment
--	Comments should say things that the code cannot say for itself. Otherwise remove it.
+  Comments should say things that the code cannot say for itself. Otherwise remove it.
 4.	Poorly written comment
 5.	Commented out code
 
 #### Environment
 1.	Build Requires More Than One Step: 
-Building a project should be a trivial operation. You should be able to check out the system/project with one simple command and then issue other simple command to build it.
+    Building a project should be a trivial operation. You should be able to check out the system/project with one simple command and then issue other simple command to build it.
 2.	Tests Require More Than One Step: 
-You should be able to run all the unit tests with just one command
+   You should be able to run all the unit tests with just one command
    
 #### Functions
 1.	Too many arguments: No argument is best, followed by one, two and three. More than three is questionable. 
@@ -201,14 +202,13 @@ You should be able to run all the unit tests with just one command
 1.	The source file should contain only one language
 2.	Obvious Behavior Is Unimplemented
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
-''' Day day = DayDate.StringToDay(String dayName); '''
-
+``` Day day = DayDate.StringToDay(String dayName); ```
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
+
 3.	Incorrect Behavior at the Boundaries
 Don’t rely on your intuition. Look for every boundary condition and write a test for it.
 4.	Overridden Safeties
-Turning off certain compiler warnings (or all warnings) may help you get the build to succeed, but at the risk of endless debugging sessions. Turning
-off failing tests and telling yourself you’ll get them to pass later is as bad as pretending your credit cards are free money.
+Turning off certain compiler warnings (or all warnings) may help you get the build to succeed, but at the risk of endless debugging sessions. Turning off failing tests and telling yourself you’ll get them to pass later is as bad as pretending your credit cards are free money.
 5.	Duplication
 Find and eliminate duplication wherever you can. The use of Template method/Strategy pattern will help to eliminate duplication when two or modules share same algorithm
 6.	Code at Wrong Level of Abstraction
@@ -221,69 +221,68 @@ Don’t create classes with lots of methods or lots of instance variables. Don�
 protected variables and functions for your subclasses. Concentrate on keeping interfaces
 very tight and very small. Help keep coupling low by limiting information.
 9.	Dead code
-10.	Vertical Separation – Variable and function should be defined close to where they are used.
-11.	Inconsistency
-If you do something a certain way, do all similar things in the same way. This goes back
-to the principle of least surprise. Be careful with the conventions you choose, and once
-chosen, be careful to continue to follow them.
-12.	Clutter
+10. Vertical Separation – Variable and function should be defined close to where they are used.
+11. Inconsistency
+ If you do something a certain way, do all similar things in the same way. This goes back
+to the principle of least surprise. Be careful with the conventions you choose, and once chosen, be careful to continue to follow them.
+12. Clutter
 Keep your files well organized, clean and free of clutter. Remove redundant code and unused variables, functions
-13.	Artificial Coupling
+13. Artificial Coupling
 In general an artificial coupling is a coupling between two modules that serves no direct purpose. It is a result of putting a variable, constant, or function in a temporarily convenient, though inappropriate, location. This is lazy and careless.
 Take the time to figure out where functions, constants, and variables ought to be
 declared. Don’t just toss them in the most convenient place at hand and then leave them there.
-14.	Feature Envy
+14. Feature Envy
 The methods of a class should be interested in the variables and functions of the class they belong to, and not the variables and functions of other classes.  If it does, then its better to move that method to other class so that it will have direct access to other class fields. For example, calculating the weekly pay of an employee in a “HourlyPayCalculator” class instead of in HourlyEmployee class.
 But sometime, we may need to do that because that method should not be moved to other class as it violates object-oriented design. For example, getting the employee report hours report information. If there is any change in report format, then that requires changes in HourlyEmployee and it violates many principles. 
-15.	Selector Arguments
+15. Selector Arguments
 In general, it is better to have many functions than to pass some code into a function to select the behavior. The passed arguments could be Boolean, enum or any integer value. 
-16.	Obscured Intent
+16. Obscured Intent
 Intent the code so that it could easily visible to others.
-17.	Misplaced Responsibility 
+17. Misplaced Responsibility 
 Code should be placed where a reader would naturally expect it to be. For example, calculating the total hours of an employee worked could be in Report module or it could be in Timecard module 
-18.	Inappropriate Static
+18. Inappropriate Static
  In general, you should prefer nonstatic methods to static methods. When in doubt,
 make the function nonstatic. If you really want a function to be static, make sure that there
 is no chance that you’ll want it to behave polymorphically
-19.	Use Explanatory Variables
-20.	Function Names Should Say What They Do
-21.	Understand the Algorithm
+19. Use Explanatory Variables
+20. Function Names Should Say What They Do
+21. Understand the Algorithm
 Before you consider yourself to be done with a function, make sure you understand
 how it works. It is not good enough that it passes all the tests. You must know10 that the
 solution is correct.
-22.	Make logical dependencies Physical
+22. Make logical dependencies Physical
  If one module depends upon another, that dependency should be physical, not just logical.
 The dependent module should not make assumptions (in other words, logical dependencies)
 about the module it depends upon. Rather it should explicitly ask that module for all
 the information it depends upon
-23.	Prefer Polymorphism to If/Else or Switch/Case
-24.	Follow standard conventions
-25.	Replace magic number with Named constants
-26.	Be precise
+23. Prefer Polymorphism to If/Else or Switch/Case
+24. Follow standard conventions
+25. Replace magic number with Named constants
+26. Be precise
 When you make a decision in your code, make sure you make it precisely. Know why
 you have made it and how you will deal with any exceptions
-27.	Structure over convention
+27. Structure over convention
 Enforce design decisions with structure over convention. Naming conventions are good,
 but they are inferior to structures that force compliance. For example, switch/cases with
 nicely named enumerations are inferior to base classes with abstract methods
-28.	Encapsulate conditional
+28. Encapsulate conditional
 Extract functions that explain the intent of the conditional
-29.	Avoid negative conditionals
-30.	Function should do one thing
-31.	Hidden temporal couplings
+29. Avoid negative conditionals
+30. Function should do one thing
+31. Hidden temporal couplings
 Temporal couplings are often necessary, but you should not hide the coupling. We can do this by creating a bucket brigade. Each function produces a result that the next function needs, so there is no reasonable way to call them out of order
-32.	Don’t be arbitrary.
+32. Don’t be arbitrary.
 If you see any public static inner class that belongs to another class but used by other classes as well. Then its better to move that class to a top level class. 
-33.	Encapsulate Boundary conditions
+33. Encapsulate Boundary conditions
 Boundary conditions are hard to keep track of. Put the processing for them in one place.
 Don’t let them leak all over the code. We don’t want swarms of +1s and -1s scattered hither
 and yon.
-34.	Functions Should Descend Only One Level of Abstraction
-35.	Keep Configurable Data at High Levels
+34. Functions Should Descend Only One Level of Abstraction
+35. Keep Configurable Data at High Levels
 If you have a constant such as a default or configuration value that is known and expected
 at a high level of abstraction, do not bury it in a low-level function. Expose it as an argument
 to that low-level function called from the high-level function. Example, Having a constants file that contains all the default configuration details
-36.	Avoid Transitive Navigation
+36. Avoid Transitive Navigation
 In general we don’t want a single module to know much about its collaborators. More specifically,
 if A collaborates with B, and B collaborates with C, we don’t want modules that use
 A to know about C. (For example, we don’t want a.getB().getC().doSomething())
