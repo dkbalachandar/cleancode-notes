@@ -1,6 +1,6 @@
 
 # cleancode-notes
-Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin  - Notes
+Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 
 ### Chapter:1 Clean Code
 
@@ -18,17 +18,19 @@ Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin  - N
 5.	Leave interfaces unadorned. ShapeFactory and ShapeFactoryImp are better than IShapeFactory and ShapeFactory
 6.	Avoid mental mapping.  Be clear in naming things. One difference between a smart programmer and a professional programmer is that the professional understands clarity is king. Professionals use their powers for good and write code that others can understand.
 7.	When constructors are overloaded use static factory methods with names that describe the arguments.
- 
-   '''
-   Complex fulcrumPoint = Complex.FromRealNumber(23.0);
-   '''
-   is better than the below code
-   
-    '''
-      Complex fulcrumPoint = new Complex(23.0); 
-      
-    '''
 
+   ``` 
+   Complex fulcrumPoint = Complex.FromRealNumber(23.0); 
+ 
+   ```
+   
+   is better than the below code.
+   
+   ``` 
+    Complex fulcrumPoint = new Complex(23.0); 
+   
+   ```
+   
 8.	Avoid using same word for two purposes.
 9.	Use problem domain names.
 
@@ -74,11 +76,16 @@ Chapter: 5 Formatting
 2.	An object created by function “F”.
 3.	An object passed to function “F”
 4.	An object held in an instance variable of class “C”
-3.	Avoid like this. Its called “Train Wreck”
-“final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();”
-You tell an object to do something you should not be asking it about its internals. In this example, the outputDir is being used for creating the scratch file. So instead of doing all this, we can let Context object to create the Scratch file. 
- “BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);”
+3.	Avoid the code like below. Its called “Train Wreck”
 
+```
+final String outputDir = ctxt.getOptions().getScratchDir().getAbsolutePath();
+````
+You tell an object to do something you should not be asking it about its internals. In this example, the outputDir is being used for creating the scratch file. So instead of doing all this, we can let Context object to create the Scratch file.
+```
+BufferedOutputStream bos = ctxt.createScratchFileStream(classFileName);
+ 
+``` 
 ### Chapter:7 Exception Handling
 1.	Use exception rather than return codes
 2.	Use unchecked exception where ever possible. Because adding checked exception to an existing method will trigger lot of change if that method is used in many places.
@@ -87,17 +94,18 @@ You tell an object to do something you should not be asking it about its interna
 5.	Define the Normal flow. To handle the special scenario, we can follow SPECIAL CASE PATTERN. You create a class or configure an object to handles a special case for you. When you do the client does not have to deal with exceptional behavior.
 6.	Don’t pass NULL and return NULL
 
-### Chapter: 8  Boundaries
+### Chapter:8  Boundaries
 1.	Try to encapsulate any boundary interface like Map inside a class. Avoid returning /accepting it an argument to Public API’s. If the Map interface changes, then we have to change multiple places. To avoid this, its better to wrap it like below.
-'''
-   public class Sensor {
+
+```
+ public class Sensor {
   private Map sensors = new HashMap();
 
   public Sensor getById(String id) {
     return (Sensor) sensor.get(id);
   }
 }
-'''
+```
 
 2.	Learning Test instead of experimenting and trying out the new stuff in our production code.  We could write few tests to explore our understanding of third-party API. So that for each third-party release, we can run through our test cases and understand that what has changes recently
 
@@ -169,9 +177,9 @@ Chapter:14 Successive refinement
 
 #### Comments
 1.	Inappropriate Information
--	Its inappropriate for a comment to hold the information better held in a different kind of system such as Git. Comments should be reserved for technical notes and design.
+Its inappropriate for a comment to hold the information better held in a different kind of system such as Git. Comments should be reserved for technical notes and design.
 2.	Obsolete Comment
--	If you find an obsolete comment, it is best to update it or get rid of it as quickly as possible.
+ If you find an obsolete comment, it is best to update it or get rid of it as quickly as possible.
 3.	Redundant Comment
 -	Comments should say things that the code cannot say for itself. Otherwise remove it.
 4.	Poorly written comment
@@ -182,23 +190,24 @@ Chapter:14 Successive refinement
 Building a project should be a trivial operation. You should be able to check out the system/project with one simple command and then issue other simple command to build it.
 2.	Tests Require More Than One Step: 
 You should be able to run all the unit tests with just one command
-   Functions
+   
+#### Functions
 1.	Too many arguments: No argument is best, followed by one, two and three. More than three is questionable. 
 2.	Output arguments. In general output arguments should be avoided. If your function must change the state of something, have it change the state of its owning object.
 3.	Flag arguments are ugly. Passing a Boolean into a function is a truly terrible practice. In such case, we can split the function into two and call them separately, instead of passing down a Boolean flag.
 4.	Dead function – Method that never be called should be removed.
-      General
+
+#### General
 1.	The source file should contain only one language
 2.	Obvious Behavior Is Unimplemented
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
 ''' Day day = DayDate.StringToDay(String dayName); '''
 
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
-
 3.	Incorrect Behavior at the Boundaries
--	Don’t rely on your intuition. Look for every boundary condition and write a test for it.
+Don’t rely on your intuition. Look for every boundary condition and write a test for it.
 4.	Overridden Safeties
--	Turning off certain compiler warnings (or all warnings) may help you get the build to succeed, but at the risk of endless debugging sessions. Turning
+Turning off certain compiler warnings (or all warnings) may help you get the build to succeed, but at the risk of endless debugging sessions. Turning
 off failing tests and telling yourself you’ll get them to pass later is as bad as pretending your credit cards are free money.
 5.	Duplication
 Find and eliminate duplication wherever you can. The use of Template method/Strategy pattern will help to eliminate duplication when two or modules share same algorithm
@@ -214,30 +223,28 @@ very tight and very small. Help keep coupling low by limiting information.
 9.	Dead code
 10.	Vertical Separation – Variable and function should be defined close to where they are used.
 11.	Inconsistency
-- If you do something a certain way, do all similar things in the same way. This goes back
+If you do something a certain way, do all similar things in the same way. This goes back
 to the principle of least surprise. Be careful with the conventions you choose, and once
 chosen, be careful to continue to follow them.
 12.	Clutter
--	Keep your files well organized, clean and free of clutter. Remove redundant code and unused variables, functions
+Keep your files well organized, clean and free of clutter. Remove redundant code and unused variables, functions
 13.	Artificial Coupling
--	In general an artificial coupling is a coupling between two modules that serves no direct purpose. It is a result of putting a variable, constant, or function in a temporarily convenient, though inappropriate, location. This is lazy and careless.
+In general an artificial coupling is a coupling between two modules that serves no direct purpose. It is a result of putting a variable, constant, or function in a temporarily convenient, though inappropriate, location. This is lazy and careless.
 Take the time to figure out where functions, constants, and variables ought to be
 declared. Don’t just toss them in the most convenient place at hand and then leave them there.
 14.	Feature Envy
- The methods of a class should be interested in the variables and functions of the class they belong to, and not the variables and functions of other classes.  If it does, then its better to move that method to other class so that it will have direct access to other class fields. For example, calculating the weekly pay of an employee in a “HourlyPayCalculator” class instead of in HourlyEmployee class.
-              But sometime, we may need to do that because that method should not be moved to other class as it violates object-oriented design. For example, getting the employee report hours report information. If there is any change in report format, then that requires changes in HourlyEmployee and it violates many principles. 
+The methods of a class should be interested in the variables and functions of the class they belong to, and not the variables and functions of other classes.  If it does, then its better to move that method to other class so that it will have direct access to other class fields. For example, calculating the weekly pay of an employee in a “HourlyPayCalculator” class instead of in HourlyEmployee class.
+But sometime, we may need to do that because that method should not be moved to other class as it violates object-oriented design. For example, getting the employee report hours report information. If there is any change in report format, then that requires changes in HourlyEmployee and it violates many principles. 
 15.	Selector Arguments
 In general, it is better to have many functions than to pass some code into a function to select the behavior. The passed arguments could be Boolean, enum or any integer value. 
 16.	Obscured Intent
 Intent the code so that it could easily visible to others.
 17.	Misplaced Responsibility 
 Code should be placed where a reader would naturally expect it to be. For example, calculating the total hours of an employee worked could be in Report module or it could be in Timecard module 
-
 18.	Inappropriate Static
  In general, you should prefer nonstatic methods to static methods. When in doubt,
 make the function nonstatic. If you really want a function to be static, make sure that there
 is no chance that you’ll want it to behave polymorphically
- 
 19.	Use Explanatory Variables
 20.	Function Names Should Say What They Do
 21.	Understand the Algorithm
@@ -270,7 +277,7 @@ If you see any public static inner class that belongs to another class but used 
 33.	Encapsulate Boundary conditions
 Boundary conditions are hard to keep track of. Put the processing for them in one place.
 Don’t let them leak all over the code. We don’t want swarms of +1s and -1s scattered hither
-and yon
+and yon.
 34.	Functions Should Descend Only One Level of Abstraction
 35.	Keep Configurable Data at High Levels
 If you have a constant such as a default or configuration value that is known and expected
@@ -279,7 +286,7 @@ to that low-level function called from the high-level function. Example, Having 
 36.	Avoid Transitive Navigation
 In general we don’t want a single module to know much about its collaborators. More specifically,
 if A collaborates with B, and B collaborates with C, we don’t want modules that use
-A to know about C. (For example, we don’t want a.getB().getC().doSomething();.)
+A to know about C. (For example, we don’t want a.getB().getC().doSomething())
 
 #### Java
 1.	Avoid long import Lists by using wildcards
@@ -292,14 +299,14 @@ Names:
 4.	Use long names for long scopes
 5.	Avoid encodings
 6.	Name should describe side-effects. Function name should describe everything that a function does. Don’t hide the side effects with a name. Refer the below example. The better name would be “createOrReturnOos”.
-'''
+```
 public ObjectOutputStream getOos() throws IOException {
-if (m_oos == null) {
-m_oos = new ObjectOutputStream(m_socket.getOutputStream());
+   if (m_oos == null) {
+     m_oos = new ObjectOutputStream(m_socket.getOutputStream());
+  }
+  return m_oos;
 }
-return m_oos;
-}
-''' 
+```
 #### Tests
 1.	Insufficient tests
 2.	Use a coverage tool
@@ -308,12 +315,5 @@ return m_oos;
 5.	Test Boundary conditions
 6.	Exhaustively Test Near Bugs
 7.	Patterns of Failure Are Revealing
-8.	T
-est Coverage Patterns Can Be Revealing
+8.	Test Coverage Patterns Can Be Revealing
 9.	Tests Should Be Fast
-
-
-
-
-
-
