@@ -2,15 +2,19 @@
 # cleancode-notes
 Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 
-### Chapter:1 Clean Code
+Three important design principles are referenced in this book frequently. They are,
 
+OCP - Open-Closed Principle - Classes should be open for extension but closed for modification.
+SRP - Single Responsibility Principle - A class should have one, and only one, reason to change.
+DIP - Dependency Inversion Principle - Classes should depend upon abstractions, not on concrete details.
+
+### Chapter:1 Clean Code
 1.	Writing clean code requires discipline. We need to work hard to get “code-sense”.
 2.	Code without test is not clean.	
 4.	Boy Scout Rule tells us we should leave it cleaner than we found it. The clean up does not have to be something big.
 5.	To write a new code, we need to read the old one, the ratio of time spent reading vs writing is 10:1.
 
 ### Chapter:2 Names
-
 1.	Use intention revealing names. We can improve the code with revealing naming.
 2.	Do not use number series naming.
 3.	Use Pronounceable names.
@@ -37,8 +41,9 @@ Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 ### Chapter:3 Functions
 1.	Function should be small and 20 lines length
 2.	Function should do one thing, they should do it well and they should do it only.
-3.	Reading code from top to bottom
-4.	Be consistent in the function names.
+3.	The code should be read from top to bottom, so arrange the function like that. Place the function right below the function that is calling. 
+4. Sometime, its worth to use Polymorphism rather than a switch/case. Using a Switch case violates SRP and OCP principles. Instead, we can create different classes one for each switch and have the switch/case in AbstractFactory. 
+5.	Be consistent in the function names.
 
 ### Chapter:4 Comments
 1.	Always try to explain yourself in code.
@@ -58,7 +63,8 @@ Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 13.	If you must write a comment, then make sure it describes the code it appears near.  Don’t offer system wide information in the context of a local comment. For example, Port number details in a Java Model class)
 14.	Don’t add too much historical information in a comment.
 15.	If a comment needs its own explanations, then its better to avoid it.
-Chapter: 5 Formatting
+
+### Chapter: 5 Formatting
 1.	You should take care that your code is nicely formatted.
 2.	Small files are easier to read and understand
 3.	Related code should appear vertically dense.
@@ -69,7 +75,6 @@ Chapter: 5 Formatting
 8.	Don’t break indentation
 
 ### Chapter:6 Objects and Data structures
-
 1.	We keep our variables private Nobody depends on them. Freedom to change their type or implementation. If you don't need them don't expose the with public getter/setter
 2.	Try to not violate the Law of Demeter rule. It states that “talk to friends, not to strangers”. A method “F” of a Class “C” class should call only methods of these.
 1.	Class C methods
@@ -158,8 +163,7 @@ to achieving reuse in the large.
 
 ### Chapter: 13 Concurrency
 1.	Keep your concurrency-related code separate from other code.
-2.	Take data encapsulation to heart; severely limit the access of any
-data that may be shared
+2.	Take data encapsulation to heart. severely limit the access of any data that may be shared
 3.	Look for the possibility of using the copy of data and not sharing the data
 4.	Become familiar with Java concurrent packages
 5.	Keep your synchronized sections as small as possible
@@ -204,7 +208,6 @@ data that may be shared
 Any function or class should implement the behavior that another programmer could reasonably expect.  For example, consider a function that translates the name of day to an Enum that represents that day.
 ``` Day day = DayDate.StringToDay(String dayName); ```
 We would expect that the string “Monday” to be translated as Day.MONDAY. When this behavior is not implemented, then the user or reader of the code can no longer depend on their intuition about function names. They read the code to know about its details.
-
 3.	Incorrect Behavior at the Boundaries
 Don’t rely on your intuition. Look for every boundary condition and write a test for it.
 4.	Overridden Safeties
@@ -291,7 +294,7 @@ A to know about C. (For example, we don’t want a.getB().getC().doSomething())
 1.	Avoid long import Lists by using wildcards
 2.	Don’t inherit constants. Avoid adding constants in an interface and implements it in a class for using constants. Use a static import instead.
 3.	Use Enums over constants
-Names:
+##### Names
 1.	Choose descriptive names
 2.	Choose names at the appropriate level of abstraction
 3.	Use standard nomenclature wherever its possible
@@ -315,4 +318,4 @@ public ObjectOutputStream getOos() throws IOException {
 6.	Exhaustively Test Near Bugs
 7.	Patterns of Failure Are Revealing
 8.	Test Coverage Patterns Can Be Revealing
-9.	Tests Should Be Fast
+9.	Tests should run fast
