@@ -1,5 +1,10 @@
 
 # cleancode-notes
+
+### Disclaimer
+
+This is a summary/notes of the book "Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin". The below notes are my personal notes and I hope it's not a copyright infringement. If it is, please contact me in order to remove this file from github.
+
 Clean Code - A Handbook of Agile Software Craftsmanship by Robert C. Martin.
 
 Three important design principles are referenced in this book frequently. They are,
